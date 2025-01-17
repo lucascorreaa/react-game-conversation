@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import './App.css'
 
 const App: React.FC = () => {
@@ -24,6 +24,14 @@ const App: React.FC = () => {
 
   // Estado para controlar o índice da mensagem atual
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
+
+  const handleNextMessage = useCallback(() => {
+    if (currentMessageIndex < messages.length -1) {
+      setCurrentMessageIndex((prev) => prev + 1)
+    } else {
+      alert('Fim da conversa!')
+    }
+  }, [currentMessageIndex, messages.length])
 
   return (
     <div className="game-container">
