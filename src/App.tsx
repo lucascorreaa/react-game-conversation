@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './App.css'
 
 const App: React.FC = () => {
@@ -32,6 +32,20 @@ const App: React.FC = () => {
       alert('Fim da conversa!')
     }
   }, [currentMessageIndex, messages.length])
+
+  useEffect(() => {
+
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        handleNextMessage()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+
+    return () => window.removeEventListener('keydown', handleKeyPress)
+
+  },[handleNextMessage])
 
   return (
     <div className="game-container">
