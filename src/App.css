@@ -61,6 +61,10 @@
 
 @media (max-width: 480px) {
 
+  .game-container {
+    height: 70vh;
+  }
+
   .game-container img {
     max-width: 50%;
     height: auto;
