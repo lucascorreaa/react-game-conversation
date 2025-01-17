@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import './App.css'
+import React, { useCallback, useEffect, useState } from 'react';
+import './App.css';
+import PC from './assets/images/pc-correa-pokemon.png';
 
 const App: React.FC = () => {
-
-  // Array com todas as mensagens que serão exibidas
   const messages = [
     'Ei dev, tranks?!',
     'Professor Corrêa aqui, alguns já me conhecem, outros não, mas tudo bem, vamos lá!',
@@ -16,43 +15,53 @@ const App: React.FC = () => {
     'Um Array com todas as mensagens que serão exibidas...',
     'E por fim, um componente de mensagem que recebe a mensagem atual e a exibe na tela...',
     'Vou usar Github para versionar o código, a Vercel para hospedar o site...',
-    'Aqui está o link do repositório do Github: https://github.com/lucascorreaa/react-game-conversation',
-    'Quer saber mais sobre mim? Acesse meu site: https://github.com/lucascorreaa',
-    'Para contratar meus serviços, acesse: suportededomingo.com.br',
-    'Como todo o jogo de RPR da Game Freak, não tem como voltar as mensagens, seja diferentes dos iguais, então, até a próxima dev!',
-  ]
+    { type: 'link', content: 'https://github.com/lucascorreaa/react-game-conversation', label: 'Repositório no Github' },
+    'Quer saber mais sobre mim?',
+    { type: 'link', content: 'https://github.com/lucascorreaa', label: 'Meu Github' },
+    'Para contratar meus serviços:',
+    { type: 'link', content: 'https://suportededomingo.com.br', label: 'Suporte de Domingo' },
+    'Como todo o jogo de RPR da Game Freak, não tem como voltar as mensagens. Seja diferentes dos iguais, até a próxima dev!',
+  ];
 
-  // Estado para controlar o índice da mensagem atual
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
   const handleNextMessage = useCallback(() => {
-    if (currentMessageIndex < messages.length -1) {
-      setCurrentMessageIndex((prev) => prev + 1)
+    if (currentMessageIndex < messages.length - 1) {
+      setCurrentMessageIndex((prev) => prev + 1);
     } else {
-      alert('Fim da conversa!')
+      window.close();
     }
-  }, [currentMessageIndex, messages.length])
+  }, [currentMessageIndex, messages.length]);
 
   useEffect(() => {
-
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
-        handleNextMessage()
+        handleNextMessage();
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyPress)
-
-    return () => window.removeEventListener('keydown', handleKeyPress)
-
-  },[handleNextMessage])
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [handleNextMessage]);
 
   return (
     <div className="game-container">
-      <p>{messages[currentMessageIndex]}</p>
-      <p>Pressione Enter ↵ para continuar.</p>
+      <img src={PC} alt="Professor Corrêa versão game freak" />
+      <div className="game-text">
+        {typeof messages[currentMessageIndex] === 'string' ? (
+          <p>{messages[currentMessageIndex]}</p>
+        ) : (
+          <a
+            href={messages[currentMessageIndex].content}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {messages[currentMessageIndex].label}
+          </a>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
