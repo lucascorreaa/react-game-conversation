@@ -22,9 +22,13 @@ const App: React.FC = () => {
     'Como todo o jogo de RPR da Game Freak, não tem como voltar as mensagens, seja diferentes dos iguais, então, até a próxima dev!',
   ]
 
+  // Estado para controlar o índice da mensagem atual
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
+
   return (
-    <div className="app-container">
-      <h1>Ei Dev, Tranks?!</h1>
+    <div className="game-container">
+      <p>{messages[currentMessageIndex]}</p>
+      <p>Pressione Enter ↵ para continuar.</p>
     </div>
   )
 }
