@@ -13,7 +13,7 @@ const App: React.FC = () => {
     'Com ele, conseguimos atualizar o estado da aplicação e exibir a mensagem correspondente no array.',
     'UseEffect é usado para capturar eventos do teclado, como pressionar Enter.',
     'Ele também garante que o listener seja adicionado e removido corretamente, evitando problemas de performance.',
-    'UseCallback foi usado para memoizar a função de avanço das mensagens, evitando recriações desnecessárias a cada renderização.',
+    'UseCallback foi usado para memorizar a função de avanço das mensagens, evitando recriações desnecessárias a cada renderização.',
     { type: 'link', content: 'https://github.com/lucascorreaa/react-game-conversation', label: 'Repositório no Github' },
     'Quer saber mais sobre mim? Acesse o link abaixo.',
     { type: 'link', content: 'https://github.com/lucascorreaa', label: 'Meu Github' },
